@@ -1,4 +1,4 @@
-IMAGE_NAME=johnae/docker-pritunl
+IMAGE_NAME=johnae/pritunl
 
 all:
 	docker build -t $(IMAGE_NAME) .
