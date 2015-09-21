@@ -10,11 +10,20 @@ touch /var/log/pritunl.log
 touch /var/run/pritunl.pid
 /bin/rm /var/run/pritunl.pid
 
+build_mongodb_uri() {
+  MONGODB_URI="mongodb://$1:$2/pritunl"
+}
+
 ## start a local mongodb instance if no mongodb specified through env
 if [ -z "$MONGODB_URI" ]; then
-  /usr/bin/mongod -f /etc/mongodb.conf &
-  sleep 70 ## for mongo to allocate journals
-  MONGODB_URI="mongodb://localhost:27017/pritunl"
+  if [ -n "$MONGO_PORT_27017_TCP_ADDR" ] &&
+    [ -n "$MONGO_PORT_27017_TCP_PORT" ]; then
+    build_mongodb_uri $MONGO_PORT_27017_TCP_ADDR $MONGO_PORT_27017_TCP_PORT
+  else
+    /usr/bin/mongod -f /etc/mongodb.conf &
+    sleep 70 ## for mongo to allocate journals
+    build_mongodb_uri "localhost" "27017"
+  fi
 fi
 
 cat << EOF > /etc/pritunl.conf
