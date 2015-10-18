@@ -20,7 +20,7 @@ if [ -z "$MONGODB_URI" ]; then
     [ -n "$MONGO_PORT_27017_TCP_PORT" ]; then
     build_mongodb_uri $MONGO_PORT_27017_TCP_ADDR $MONGO_PORT_27017_TCP_PORT
   else
-    /usr/bin/mongod -f /etc/mongodb.conf &
+    /usr/bin/mongod -f /etc/mongod.conf &
     sleep 70 ## for mongo to allocate journals
     build_mongodb_uri "localhost" "27017"
   fi
