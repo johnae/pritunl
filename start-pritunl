@@ -28,17 +28,17 @@ fi
 
 cat << EOF > /etc/pritunl.conf
 {
+    "debug": true,
+    "bind_addr": "0.0.0.0",
+    "port": 9700,
+    "log_path": "/var/log/pritunl.log",
+    "temp_path": "/tmp/pritunl_%r",
+    "local_address_interface": "auto",
     "mongodb_uri": "$MONGODB_URI",
     "server_key_path": "/var/lib/pritunl/pritunl.key",
-    "log_path": "/var/log/pritunl.log",
     "static_cache": true,
     "server_cert_path": "/var/lib/pritunl/pritunl.crt",
-    "temp_path": "/tmp/pritunl_%r",
-    "bind_addr": "0.0.0.0",
-    "debug": false,
-    "www_path": "/usr/share/pritunl/www",
-    "local_address_interface": "auto",
-    "port": 9700
+    "www_path": "/usr/share/pritunl/www"
 }
 EOF
 
