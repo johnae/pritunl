@@ -28,7 +28,7 @@ fi
 
 cat << EOF > /etc/pritunl.conf
 {
-    "debug": true,
+    "debug": false,
     "bind_addr": "0.0.0.0",
     "port": 9700,
     "log_path": "/var/log/pritunl.log",
