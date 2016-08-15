@@ -3,14 +3,14 @@
 Just build it or pull it from johnae/pritunl. Run it something like this:
 
 ```
-docker run -d -privileged -p 1194:1194/udp -p 1194:1194/tcp -p 9700:9700/tcp johnae/pritunl
+docker run -d --privileged -p 1194:1194/udp -p 1194:1194/tcp -p 9700:9700/tcp johnae/pritunl
 ```
 
 If you have a mongodb somewhere you'd like to use for this rather than starting the built-in one you can
 do so through the MONGODB_URI env var like this:
 
 ```
-docker run -d -privileged -e MONGODB_URI=mongodb://some-mongo-host:27017/pritunl -p 1194:1194/udp -p 1194:1194/tcp -p 9700:9700/tcp johnae/pritunl
+docker run -d --privileged -e MONGODB_URI=mongodb://some-mongo-host:27017/pritunl -p 1194:1194/udp -p 1194:1194/tcp -p 9700:9700/tcp johnae/pritunl
 ```
 
 Then you can login to your pritunl web ui at https://docker-host-address:9700
